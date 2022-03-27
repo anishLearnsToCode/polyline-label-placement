@@ -71,6 +71,11 @@ def binary_search(array, x) -> int:
     return left
 
 
+def get_position_from_vector(slope) -> str:
+    if slope > 0: return np.random.choice(['top-right', 'bottom-left'])
+    return np.random.choice(['top-left', 'bottom-right'])
+
+
 if __name__ == '__main__':
     X_datum, Y_datum = [], []
     with open('data_1.txt') as file:
@@ -86,6 +91,7 @@ if __name__ == '__main__':
 
     no_of_polylines = len(X_datum)
     increment = 0.2 if no_of_polylines == 1 else DIFFERENCE / (no_of_polylines - 1)
+    labels = []
 
     for i, (X, Y) in enumerate(zip(X_datum, Y_datum)):
         distances = []
@@ -102,5 +108,8 @@ if __name__ == '__main__':
         slope = (Y[segment_index + 1] - Y[segment_index] + EPSILON) / (X[segment_index + 1] - X[segment_index] + EPSILON)
         label_y = Y[segment_index] + segment_length * ratio * slope / sqrt(slope ** 2 + 1)
         label_x = X[segment_index] + segment_length * ratio / sqrt(slope ** 2 + 1)
-        plot_polyline_and_label(X, Y, label_x, label_y)
+        label = (label_x, label_y, get_position_from_vector(slope))
+        labels.append(label)
+        print(label)
+        plot_polyline_and_label(X, Y, label_x, label_y, label[-1])
     plt.show()
