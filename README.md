@@ -25,3 +25,5 @@ This will output label coordinates and also label positions like
 ````
 
 This will also display the graph of multiple polylines and label boxes.
+
+![sample-plot](assets/sample-plot.png)
