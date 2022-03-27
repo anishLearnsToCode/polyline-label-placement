@@ -120,6 +120,10 @@ def binary_search(array: List[float], x: float) -> int:
 
 
 def get_position_from(slope) -> str:
+    """
+    :param slope slope of line segment where the label is being drawn
+    :return returns position of label bounding box  
+    """
     if slope > 0: return np.random.choice(['top-right', 'bottom-left'])
     return np.random.choice(['top-left', 'bottom-right'])
 
